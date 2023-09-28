@@ -2,27 +2,46 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import FirstParagraphHTMLView from './firstPara' 
 import { router } from 'expo-router'
+import { Ionicons } from '@expo/vector-icons'
+import { Share } from 'react-native';
+
 
 
 const ArticleCard = ({item}) => {
+
+  const url = 'https://play.google.com/store/apps/details?id=com.instagram.android&hl=en_IN&gl=US'
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          ('Instagram | A time wasting application'+ '\n'+ url )
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
-    <TouchableOpacity style={styles.card} onPress={() => router.push(`articledetail/${item._id}`)}>
+    <TouchableOpacity style={styles.card} onPress={() => router.push(`/articledetail/${item._id}`)}>
       <Text style={styles.title}>{item.title}</Text>
       <FirstParagraphHTMLView htmlContent={item.content} />
       <View style={styles.bottomButtons}>
-        <View style={styles.volumeButton}>
-          <Image
-            source={require('../assets/volume.png')}
-            style={{ width: 18, height: 18 }}
-          />
+        <TouchableOpacity style={styles.volumeButton}>
+          <Ionicons name="volume-high-outline" size={20} color="#16a34a" style={styles.icon} />
           <Text style={styles.volumeText}>Click Here To Listen Audio</Text>
-        </View>
-        <View>
-          <Image
-            source={require('../assets/share.png')}
-            style={{ width: 18, height: 18 }}
-          />
-        </View>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Ionicons name="share-social-outline" size={20} color="#16a34a" style={styles.icon} />
+        </TouchableOpacity>
       </View>
     </TouchableOpacity>
   )
@@ -41,8 +60,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        fontWeight: 'bold',
-        color: '#65a30d'
+        fontWeight: '900',
+        color: '#16a34a'
     },
     bottomButtons: {
         borderTopWidth: 1,
@@ -60,8 +79,9 @@ const styles = StyleSheet.create({
       alignItems: 'center'     
     },
     volumeText: {
-      color: '#65a30d',
+      color: '#16a34a',
       fontSize: 12,
-      marginLeft: 7
+      marginLeft: 7,
+      fontWeight: '500'
     }
 })

@@ -29,23 +29,23 @@ export default function Layout() {
       <Stack>
         <Stack.Screen
           name="index"
-          options={{ headerShown: false }}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
         />
         <Stack.Screen
           name="category/[_id]"
-          options={{ headerShown: false }}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
         />
         <Stack.Screen
           name="article/[_id]"
-          options={{ headerShown: false }}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
         />
         <Stack.Screen
           name="articledetail/[id]"
-          options={{ headerShown: false }}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
         />
         <Stack.Screen
           name="modal/[src]"
-          options={{ headerShown: false, presentation: 'modal', animation: 'fade_from_bottom' }}
+          options={{ headerShown: false, presentation: 'modal', animation: 'slide_from_bottom' }}
         />
       </Stack>
       <AudioPlayer/>

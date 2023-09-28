@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: '100%',
+    width: '96%',
     height: '80%', // The image will fill the container while maintaining its aspect ratio
     borderRadius: 5,
     borderWidth: 1,

@@ -1,6 +1,8 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, } from 'react-native';
+
 
 const CustomImage = ({source}) => {
   return (
@@ -8,6 +10,7 @@ const CustomImage = ({source}) => {
       <TouchableOpacity
         style={styles.container}
       >
+        <Ionicons name="image-outline" size={20} color="#16a34a" style={styles.icon} />
        <Link
         style={styles.text}
         href={{
@@ -16,6 +19,7 @@ const CustomImage = ({source}) => {
           params: { source: source },
         }}
       >
+        
         Click Here to view Refrence Image
       </Link>
       </TouchableOpacity>
@@ -26,8 +30,15 @@ const CustomImage = ({source}) => {
 export default CustomImage;
 
 const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems:'center',
+    marginHorizontal: 4,
+  },
   text: {
-    color: 'green',
+    color: '#16a34a',
     marginLeft: 7,
+    fontWeight: '500',
   },
 });

@@ -3,6 +3,7 @@ import { ActivityIndicator, SafeAreaView, ScrollView, StyleSheet, Text, Touchabl
 import useApiFetch from '../../hooks/useApiFetch';
 import RichTextRenderer from '../../components/ContentRenderer';
 import { useGlobalState } from '../../GlobalStateContext';
+import { Ionicons } from '@expo/vector-icons';
 
 
 export default function Page() {
@@ -35,12 +36,15 @@ export default function Page() {
 
   return (
     <SafeAreaView style={styles.container}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
             <Text style={styles.title}>{data.article.title}</Text>
-            <TouchableOpacity onPress={() => setName(data.article.audio)}>
-               <Text>My Name {state.name}</Text>
+            <TouchableOpacity style={styles.volumeButton} onPress={() => setName(data.article.audio)}>
+              <Ionicons name="volume-high-outline" size={20} color="#16a34a" style={styles.icon} />
+              <Text style={styles.volumeText}>Click Here To Listen Audio</Text>
             </TouchableOpacity>
-            <RichTextRenderer content={data.article.content} />
+            <View style={styles.content}>
+              <RichTextRenderer content={data.article.content} />
+            </View>
         </ScrollView>
     </SafeAreaView>
   );
@@ -50,13 +54,29 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop:50,
+    paddingTop:70,
     backgroundColor: '#fff',
     paddingHorizontal: 10
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: '900',
-    color: '#65a30d'
+    color: '#16a34a',
+    borderBottomWidth: 1,
+    borderColor: '#e5e5e5',
+    paddingBottom: 15,
+},
+volumeButton: {
+  display:'flex',
+  flexDirection: 'row',
+  alignItems: 'center' ,
+  marginTop: 20,    
+  paddingVertical: 10,
+},
+volumeText: {
+  color: '#16a34a',
+  fontSize: 14,
+  marginLeft: 7,
+  fontWeight: '500'
 },
 });
